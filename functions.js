@@ -12,3 +12,16 @@ export function calculateTotalPrice() {
 
     return totalPrice;
 }
+
+export function getProductPrice(productName) {
+    let products, price;
+
+    products = this.products;
+    price = 0;
+
+    if (products.productName == productName) {
+        price = products.price
+    }
+
+    return price
+}
