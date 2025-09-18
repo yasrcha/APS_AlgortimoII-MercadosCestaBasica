@@ -1,11 +1,9 @@
 import { calculateTotalPrice, getProductPrice } from "./functions.js";
-
 /**
  * Armazena a lista de supermercados e seus respectivos produtos e métodos.
  * A estrutura aninhada (array de objetos) foi escolhida para facilitar a manipulação de dados e garantir a escalabilidade futura do projeto.
  */
 let supermarkets = [
-
     {
         name: "Carrefour",
         products: [
