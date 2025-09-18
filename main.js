@@ -1,10 +1,10 @@
 // Importando dados de 'mercado_produtos' para que o arquivo 'main' tenha acesso ao array.
 import mercados from "./mercados_produtos.js";
 
-//Função da Isa - Cálculo de Média dos Produtos 
+//Função da Isa - Cálculo de Média dos Produtos 
 
 function calcularMediaProdutos(mercados) {
-    const produtos = ['arroz', 'feijao', 'acucar', 'oleo', 'cafe']; 
+    const produtos = ['arroz', 'feijao', 'acucar', 'oleo', 'cafe'];
     const medias = {};
     // Para CADA produto da lista, calcula a média
     produtos.forEach(produto => {
@@ -16,12 +16,15 @@ function calcularMediaProdutos(mercados) {
                 soma += parseFloat(mercado[produto]);
                 count++;
             }
-        }); 
-         // Calcula a média: total dividido pela quantidade, com 2 casas decimais
-        medias[produto] = count > 0 ? (soma / count).toFixed(2) : 0;
+        });
+        // --- CORREÇÃO APLICADA AQUI ---
+        // Calcula a média e garante que o resultado final seja um NÚMERO, não uma string.
+        const mediaCalculada = count > 0 ? (soma / count) : 0;
+        medias[produto] = parseFloat(mediaCalculada.toFixed(2));
     });
-    
-    return medias; 
+
+    return medias;
 }
 const medias = calcularMediaProdutos(mercados);
+console.log("Médias calculadas por produto:");
 console.log(medias);
