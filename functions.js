@@ -1,33 +1,7 @@
-export function calculateTotalPrice() {
-    let products,totalPrice;
-
-    products = this.products;
-    totalPrice = 0;
-
-    for(let i = 0; i < products.length; i++) {
-        totalPrice += products[i].price
-    }
-
-    return totalPrice;
-}
-
-export function getProductPrice(productName) {
-    let products, price;
-
-    products = this.products;
-    price = 0;
-
-    if (products.productName == productName) {
-        price = products.price
-    }
-
-    return price;
-}
-
 export function getCheapestBasket(markets) {
     const totalPricesList = [];
     const marketName = [];
-    
+
     for(let market of markets) {
         totalPricesList.push(market.getProductsTotalPrice());
         marketName.push(market.name);
@@ -46,4 +20,27 @@ export function getCheapestBasket(markets) {
     }
 
     return {cheapestPriceFound, cheapestPriceMarket};
+}
+
+export function calculateProductAverages(supermarketsArray) {
+    const produtos = ["Arroz", "Feijão", "Açucar", "Óleo", "Café"];
+    const medias = {};
+
+    produtos.forEach(produto => {
+        let soma = 0;
+        let count = 0;
+        
+        supermarketsArray.forEach(supermarket => {
+            const price = supermarket.getProductPrice(produto);
+            if (price > 0) {
+                soma += price;
+                count++;
+            }
+        }); 
+        
+        const mediaCalculada = count > 0 ? (soma / count) : 0;
+        medias[produto] = parseFloat(mediaCalculada.toFixed(2));
+    });
+    
+    return medias; 
 }

@@ -1,27 +1,36 @@
-// Importando dados de 'mercado_produtos' para que o arquivo 'main' tenha acesso ao array.
-import mercados from "./mercados_produtos.js";
+// Garante que o arquivo atual tenha acesso a estrutura 'supermarkets' que exportamos do arquivo './supermarketsProducts.'
+import { getCheapestBasket, calculateProductAverages } from './functions.js';
+import supermarkets from './supermarketsProducts.js';
 
-//Função da Isa - Cálculo de Média dos Produtos 
+import promptSync from 'prompt-sync';
+const prompt = promptSync();
 
-function calcularMediaProdutos(mercados) {
-    const produtos = ['arroz', 'feijao', 'acucar', 'oleo', 'cafe']; 
-    const medias = {};
-    // Para CADA produto da lista, calcula a média
-    produtos.forEach(produto => {
-        let soma = 0;
-        let count = 0;
-        // Para CADA supermercado, pega o preço do produto atual
-        mercados.forEach(mercado => {
-            if (mercado[produto] !== undefined) {
-                soma += parseFloat(mercado[produto]);
-                count++;
-            }
-        }); 
-         // Calcula a média: total dividido pela quantidade, com 2 casas decimais
-        medias[produto] = count > 0 ? (soma / count).toFixed(2) : 0;
-    });
-    
-    return medias; 
+for (const market of supermarkets){
+    console.log(`\n------------------------- ${market.name} -------------------------`)
+    for(const product of market.products) {
+        let input = prompt(`Digite o preço do produto ${product.productName} no supermercado ${market.name}: `);
+        let price = parseFloat(input);
+        
+        while (isNaN(price)){
+            input = prompt("Invalido. Tente novamente.");
+            price = parseFloat(input);
+        }
+        product.price = price; 
+    }
 }
-const medias = calcularMediaProdutos(mercados);
-console.log(medias);
+
+const medias = calculateProductAverages(supermarkets);
+const maisBarato = getCheapestBasket(supermarkets);
+
+console.log("\nCusto total por supermercado:");
+supermarkets.forEach(market => {
+    console.log(`- ${market.name}: R$ ${market.getProductsTotalPrice().toFixed(2)}`);
+});
+
+console.log("\nPreço médio por produto:");
+for (const [produto, media] of Object.entries(medias)) {
+    console.log(`- ${produto}: R$ ${media.toFixed(2)}`);
+}
+
+console.log("\nSupermercado mais barato:");
+console.log(`- ${maisBarato.cheapestPriceMarket}: R$ ${maisBarato.cheapestPriceFound.toFixed(2)}`);

@@ -1,4 +1,4 @@
-import { calculateTotalPrice, getProductPrice } from "./functions.js";
+import { calculateTotalPrice, getProductPrice } from "./objectMethods.js";
 
 /**
  * Armazena a lista de supermercados e seus respectivos produtos e métodos.
@@ -41,7 +41,8 @@ let supermarkets = [
         ],
         getProductsTotalPrice: calculateTotalPrice,
         getProductPrice: getProductPrice,
-    },{
+    },
+    {
         name: "Prezunic",
         products: [
             { productName: "Arroz",  price: null },
