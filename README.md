@@ -6,7 +6,7 @@ Este projeto é uma aplicação de console desenvolvida para a matéria de Algor
 
 ## 📸 Demonstração
 
-
+![projeto demonstração 2](https://github.com/user-attachments/assets/e36bd116-7644-4667-81ac-3aa158087695)
 
 ## ✨ Funcionalidades
 
