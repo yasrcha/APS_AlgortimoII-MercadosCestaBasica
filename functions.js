@@ -5,23 +5,17 @@ export function calculateTotalPrice() {
     totalPrice = 0;
 
     for(let i = 0; i < products.length; i++) {
-        totalPrice += products[i].price
+        totalPrice += (products[i].price || 0);
     }
 
     return totalPrice;
 }
 
 export function getProductPrice(productName) {
-    let products, price;
-
-    products = this.products;
-    price = 0;
-
-    if (products.productName == productName) {
-        price = products.price
-    }
-
-    return price;
+    const products = this.products;
+    const foundProduct = products.find(p => p.productName === productName);
+    
+    return foundProduct ? (foundProduct.price || 0) : 0;
 }
 
 export function getCheapestBasket(markets) {
