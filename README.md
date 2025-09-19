@@ -32,7 +32,7 @@ Para rodar este projeto localmente, siga os passos abaixo:
 
 2.  **Navegue até a pasta do projeto:**
     ```bash
-    cd seu-repositorio
+    cd APS_AlgortimoII-MercadosCestaBasica
     ```
 
 3.  **Instale as dependências:**
