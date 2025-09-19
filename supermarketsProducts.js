@@ -1,9 +1,8 @@
 import { calculateTotalPrice, getProductPrice } from "./objectMethods.js";
 
-/**
- * Armazena a lista de supermercados e seus respectivos produtos e métodos.
- * A estrutura aninhada (array de objetos) foi escolhida para facilitar a manipulação de dados e garantir a escalabilidade futura do projeto.
- */
+// ESTRUTURA DE DADOS PRINCIPAL
+// Define a lista de supermercados e seus respectivos produtos.
+// Estrutura de dados principal que armazena a lista de supermercados.
 let supermarkets = [
 
     {
